@@ -1,0 +1,30 @@
+{
+  "name": "babel-plugin-umi-model",
+  "version": "1.0.0",
+  "description": "Auto-completion of the callback function in useModel.",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "father-build",
+    "prepublish": "pnpm build"
+  },
+  "keywords": [
+    "babel",
+    "babel-plugin",
+    "umi"
+  ],
+  "author": "lxs24sxl <lxs24sxl@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lxs24sxl/babel-plugin-umi-model/issues"
+  },
+  "files": [
+    "src",
+    "lib",
+    "package.json",
+    "README.md"
+  ],
+  "homepage": "https://github.com/lxs24sxl/babel-plugin-umi-model#readme",
+  "devDependencies": {
+    "father-build": "^1.22.5"
+  }
+}
