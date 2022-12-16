@@ -4,7 +4,7 @@ This plugin is used to automatically introduce the second parameter in `umi`'s `
 
 [![NPM version](https://img.shields.io/npm/v/babel-plugin-umi-model.svg?style=flat)](https://npmjs.org/package/babel-plugin-umi-model)
 
-[English](./README.md) | 简体中文
+English | [简体中文](./README-zh_CN.md)
 
 ## 📦 Install
 
