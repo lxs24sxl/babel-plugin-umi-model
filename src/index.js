@@ -26,10 +26,10 @@ function checkExcludes(state) {
 export default function (babel) {
   const { types: t } = babel;
   let valid = true;
-  const createObjectProperty = (name, objName) =>
+  const createObjectProperty = (key, value, objName) =>
     t.ObjectProperty(
-      t.Identifier(name),
-      t.memberExpression(t.Identifier(objName), t.Identifier(name))
+      t.Identifier(key),
+      t.memberExpression(t.Identifier(objName), t.Identifier(value))
     );
 
   const visitor = {
@@ -66,8 +66,8 @@ export default function (babel) {
 
         const list = [];
         for (let item of declarations) {
-          const name = item.id.name;
-          list.push(createObjectProperty(name, "model"));
+          const name = item.init.property.name;
+          list.push(createObjectProperty(name, name, "model"));
         }
         path.node.arguments.push(
           t.ArrowFunctionExpression(
@@ -91,16 +91,17 @@ export default function (babel) {
         const bodyProperties = arrowFunctionObject.body.properties || [];
 
         for (let property of properties) {
-          const name = property.key.name;
+          const key = property.key.name;
+          // const value = property.value.name;
 
           const bodyPropertyIndex = bodyProperties.findIndex(
-            (item) => item.key.name === name
+            (item) => item.key.name === key
           );
 
           if (bodyPropertyIndex > -1) continue;
 
           path.node.arguments[1].body.properties.push(
-            createObjectProperty(name, modelName)
+            createObjectProperty(key, key, modelName)
           );
         }
 
@@ -111,9 +112,9 @@ export default function (babel) {
       const list = [];
 
       for (let property of properties) {
-        const name = property.key.name;
-
-        list.push(createObjectProperty(name, "model"));
+        const key = property.key.name;
+        // const value = property.value.name;
+        list.push(createObjectProperty(key, key, "model"));
       }
 
       if (list.length === 0) return;
